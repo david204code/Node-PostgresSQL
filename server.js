@@ -4,6 +4,9 @@ const studentRoutes = require('./src/student/routes');
 const app = express();
 const port = 3000;
 
+//add a middleware
+app.use(express.json());
+
 //give it something to listen to on the / route with a callback function
 app.get("/", (req, res) => {
     res.send("Hello and welcome!");
