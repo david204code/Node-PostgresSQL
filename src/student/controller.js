@@ -50,9 +50,30 @@ const addStudent = (req, res) => {
     });
 };
 
+//the function to remove student from the database by id
+const removeStudent = (req, res) => {
+    //get the id of the student from the URL/parameters
+    const id = parseInt(req.params.id);
+    //check if the id exist
+    pool.query(queries.getStudentById, [id], (error, results) => {
+        //send back the response no student by that ID exist, no student found
+        const noStudentFound = !results.rows.length;
+        if(noStudentFound) {
+            res.send("Student does not exist in the database, could not remove.");
+        }
+        //if student exist then delete the student
+        pool.query(queries.removeStudent, [id], (error,results) => {
+            if(error) throw error;
+            //if the status is 200, send back a message
+            res.status(200).send("Student removed successfully.");
+        });
+    });
+};
+
 //exporting to student/routes.js
 module.exports = {
     getStudents, 
     getStudentById,
     addStudent,
+    removeStudent,
 };

@@ -12,10 +12,14 @@ const checkEmailExists = "SELECT s FROM students s WHERE s.email = $1";
 //query to add student and we are passing variable into with the $1/$2
 const addStudent = "INSERT INTO students (name, email, age, dob) VALUES ($1, $2, $3, $4)";
 
+//query to remove student by id, "students" is the name of the table
+const removeStudent = "DELETE FROM students WHERE id = $1";
+
 // exporting to student/controller.js
 module.exports = {
     getStudents, 
     getStudentById,
     checkEmailExists,
     addStudent,
+    removeStudent,
 };
