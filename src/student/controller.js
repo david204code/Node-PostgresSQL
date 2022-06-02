@@ -40,6 +40,13 @@ const addStudent = (req, res) => {
             //send back some repsone like email already taken
             res.send("Email already exists.");
         }
+        //add student to database, taking in the variable with [], (error, result) is the callback function
+        pool.query(queries.addStudent, [name, email, age, dob], (error, results) => {
+            if(error) throw error;
+            //if there isn't an error, add the student to the database, 201 means student has been created successfully
+            res.status(201).send("Student Created Successfully!");
+            console.log("Student created");
+        })
     });
 };
 
