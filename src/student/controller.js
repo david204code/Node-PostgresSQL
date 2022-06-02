@@ -17,6 +17,18 @@ const getStudents = (req, res) => {
     });
 };
 
+//the route in the controller to getStudentById
+const getStudentById = (req, res) => {
+    //get the "id" out of the url, out of the parameter of the req/request. Will need to parse id from string to int
+    const id = parseInt(req.params.id); 
+    //[] to pass in the id variable
+    pool.query(queries.getStudentById, [id], (error, results) => {
+        if(error) throw error;
+        res.status(200).json(results.rows);
+    });
+};
+
+//exporting to student/routes.js
 module.exports = {
-    getStudents, 
+    getStudents, getStudentById,
 };

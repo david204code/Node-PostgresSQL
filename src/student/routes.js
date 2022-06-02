@@ -21,5 +21,7 @@ const router = Router();
 
 // short form, express knows 
 router.get('/', controller.getStudents);
+//route to get students by ID
+router.get('/:id', controller.getStudentById);
 
 module.exports = router;
