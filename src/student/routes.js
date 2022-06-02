@@ -20,8 +20,10 @@ const router = Router();
 // router.get('/', () => controller.getStudents);
 
 // short form, express knows 
-router.get('/', controller.getStudents);
+router.get("/", controller.getStudents);
+//Post route to create student for the database to store
+router.post("/", controller.addStudent);
 //route to get students by ID
-router.get('/:id', controller.getStudentById);
+router.get("/:id", controller.getStudentById);
 
 module.exports = router;
