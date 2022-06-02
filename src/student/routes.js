@@ -25,6 +25,8 @@ router.get("/", controller.getStudents);
 router.post("/", controller.addStudent);
 //route to get students by ID
 router.get("/:id", controller.getStudentById);
+//route for a put request, to update a student that already exist
+router.put("/:id", controller.updateStudent);
 //route to delete student by ID
 router.delete("/:id", controller.removeStudent);
 

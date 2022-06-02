@@ -70,10 +70,31 @@ const removeStudent = (req, res) => {
     });
 };
 
+//update student functon
+const updateStudent = (req, res) => {
+    //get the id of the student out of the ULR/params
+    const id = parseInt(req.params.id);
+    //can only update the name of the student in the database that already exist, get the name out of the body request
+    const { name } = req.body;
+    //check if the student exist
+    pool.query(queries.getStudentById, [id], (error, results) => {
+        const noStudentFound = !results.rows.length;
+        if(noStudentFound) {
+            res.send("Student does not exist in the database");
+        }
+        //if the student does exist, update the student. [name, id] correlate with const updateStudents in quries.js
+        pool.query(queries.updateStudent, [name, id], (error, results) => {
+            if(error) throw error;
+            res.status(200).send("Student updated successfully");
+        });
+    });
+};
+
 //exporting to student/routes.js
 module.exports = {
     getStudents, 
     getStudentById,
     addStudent,
     removeStudent,
+    updateStudent,
 };

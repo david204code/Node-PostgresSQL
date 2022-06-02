@@ -15,6 +15,10 @@ const addStudent = "INSERT INTO students (name, email, age, dob) VALUES ($1, $2,
 //query to remove student by id, "students" is the name of the table
 const removeStudent = "DELETE FROM students WHERE id = $1";
 
+//query to update student, students is the name of the table. $1 is the first variable/name passed in, 
+//$2 is the second variable passed in 
+const updateStudent = "UPDATE students SET name = $1 WHERE id = $2";
+
 // exporting to student/controller.js
 module.exports = {
     getStudents, 
@@ -22,4 +26,5 @@ module.exports = {
     checkEmailExists,
     addStudent,
     removeStudent,
+    updateStudent,
 };
